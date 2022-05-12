@@ -2,7 +2,7 @@ const buildPCPUser = (dataset, country, startYear, endYear) => {
     console.log(dataset)
 
     var svg = d3.select("#pcp")
-            .attr("class","mdl-shadow--2dp mdl-cell mdl-cell--6-col mdl-grid text-aligin--center")
+            .attr("class","mdl-shadow--2dp mdl-cell mdl-cell--8-col mdl-grid text-aligin--center")
             .attr("width",900)
             .attr("height", 300)
             .append("svg")

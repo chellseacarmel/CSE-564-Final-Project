@@ -29,7 +29,15 @@ const makeBubbleChart = (title, country, dataset,param,id) => {
     var bubble = d3.pack(dataset)
         .size([diameter, diameter])
         .padding(1.5);
-  
+    
+    var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([10, 0])
+        .html(function(d) {
+            return "<strong>Group: </strong><span class='details'>" + d.data.Name + "<br></span>" + "<strong>Number of Protests: </strong><span class='details'>" + d.data.Count + "</span>";
+    })
+
+
     // var svg = d3.select("#bubblechart")
     //     .append("svg")
     //     .attr("width", diameter)
@@ -42,6 +50,8 @@ const makeBubbleChart = (title, country, dataset,param,id) => {
         .attr("width", diameter)
         .attr("height", diameter)
         .attr("class", "bubble");
+
+    svg.call(tip);
   
     var nodes = d3.hierarchy(dataset)
         .sum(function(d) { return d.Count; });
@@ -94,6 +104,21 @@ const makeBubbleChart = (title, country, dataset,param,id) => {
             return d.r/5;
         })
         .attr("fill", "white");
+    
+    node.on('mouseover', function(d) {
+        tip.show(d);
+        d3.select(this)
+            .style("stroke-width", 3)
+            
+    })
+  
+    .on('mouseout', function(d) {
+        tip.hide(d);
+        d3.select(this)
+            .style("stroke-width", 1)
+            
+    });
+    
   
     // d3.select(self.frameElement)
     //     .style("height", diameter + "px");
