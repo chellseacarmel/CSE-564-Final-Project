@@ -41,7 +41,7 @@ var colorScale = d3.scaleLinear().domain([Math.min(...values),Math.max(...values
 var format = d3.format(",");
 
 var svg = d3.select("#bubble_map")
-  .attr("class","mdl-shadow--2dp mdl-cell mdl-cell--6-col mdl-grid text-aligin--center")
+  .attr("class","mdl-shadow--2dp mdl-cell mdl-cell--8-col mdl-grid text-aligin--center")
   .append("svg")
   .attr("width", width)
   .attr("height", height)

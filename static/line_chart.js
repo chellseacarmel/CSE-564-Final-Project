@@ -73,7 +73,7 @@ function draw_line_chart(data){
       )
 
   // Add titles
-  var titles = ["GDP","Inflation","Urbanization","Vulnerable Employment","Salaried Employment","Democracy Index","GDP Per Capita"]
+  var titles = ["GDP Growth","Inflation","Urbanization","Vulnerable Employment","Salaried Employment","Democracy Index","GDP Per Capita"]
   svg.append("text")
   .attr("text-anchor", "start")
   .attr("y", -5)
@@ -81,8 +81,6 @@ function draw_line_chart(data){
   .text(function(d,i){ return(titles[a])})
 
 }
-
-    
 
 }
 

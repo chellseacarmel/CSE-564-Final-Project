@@ -86,7 +86,7 @@ d3.csv("static/updated.csv", function(data) {
     var filtered_data = new_data.map(function(d) {
         return {
           date: +d.year,  
-          gdp: +d.gdppercap,
+          gdp: +d.gdpgrowth,
           urbanization: +d.urbanpop,
           inflation: +d.inflation,
           vulnerable: +d.vulnerableEmployment,
@@ -94,7 +94,7 @@ d3.csv("static/updated.csv", function(data) {
           note: d.notes,
           demand: d.protesterdemands,
           response: d.stateresponses,
-          identity: d.protesteridentity,
+          protestergroup: d.protesteridentity,
           country: d.country,
           democracy: d.democracyIndex,
           salaried: d.salariedEmployment,
@@ -106,7 +106,7 @@ d3.csv("static/updated.csv", function(data) {
 
     draw_line_chart(filtered_data)
 
-    makeBubbleChart("bubblechart", country, filtered_data,"identity","#bubblechart")
+    makeBubbleChart("bubblechart", country, filtered_data,"protestergroup","#bubblechart")
     makeBubbleChart("bubblechart", country, filtered_data,"demand","#bubblechart2")
     makeBubbleChart("bubblechart", country, filtered_data,"response","#bubblechart3")
 
