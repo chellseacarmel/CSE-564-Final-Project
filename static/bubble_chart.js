@@ -34,7 +34,7 @@ const makeBubbleChart = (title, country, dataset,param,id) => {
         .attr('class', 'd3-tip')
         .offset([10, 0])
         .html(function(d) {
-            return "<strong>Group: </strong><span class='details'>" + d.data.Name + "<br></span>" + "<strong>Number of Protests: </strong><span class='details'>" + d.data.Count + "</span>";
+            return "<strong>"+param+": </strong><span class='details'>" + d.data.Name + "<br></span>" + "<strong>Number of Protests: </strong><span class='details'>" + d.data.Count + "</span>";
     })
 
 
