@@ -92,7 +92,9 @@ d3.csv("static/updated.csv", function(data) {
           vulnerable: +d.vulnerableEmployment,
           source: d.sources,
           note: d.notes,
+          participants: d.participants,
           demand: d.protesterdemands,
+          protesterviolence: d.protesterviolence,
           response: d.stateresponses,
           protestergroup: d.protesteridentity,
           country: d.country,
@@ -116,7 +118,7 @@ d3.csv("static/updated.csv", function(data) {
 
     var table_data = []
     filtered_data.forEach(function(d, i){
-      table_data.push([d.date, d.note, d.source,d.demand,d.response]);  
+      table_data.push([d.date, d.note, d.source, d.participants, d.protestergroup, d.protesterviolence==1?"Violent":"Non-Violent", d.demand,d.response]);  
     });
 
     TableSort(
@@ -124,20 +126,21 @@ d3.csv("static/updated.csv", function(data) {
       [{text:"Year", sort: TableSort.alphabet},
       {text:"Description", sort: TableSort.alphabet}, 
       {text:"Sources", sort: TableSort.alphabet},
+      {text:"Participants", sort: TableSort.alphabet},
+      {text:"Identity", sort: TableSort.alphabet},
+      {text:"Violence", sort: TableSort.alphabet},
       {text:"Demands", sort: TableSort.alphabet},
-      {text:"Responses", sort: TableSort.alphabet}
+      {text:"Responses", sort: TableSort.alphabet},
       ],
       table_data,
-      {height:"300px", width: "700px"}
+      {height:"300px", width: "1000px"}
       );
     
     // Adding table interactions
     var trows = document.querySelectorAll("tr")
     trows.forEach(d => {
       let cells = d.querySelectorAll("td")
-      console.log(cells)
       cells.forEach(c=>{
-        console.log(c)
         c.style.height = "20px"
       })
       d.className="collapsed"

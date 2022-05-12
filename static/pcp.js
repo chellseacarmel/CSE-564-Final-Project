@@ -11,8 +11,8 @@ const buildPCPUser = (dataset, country, startYear, endYear) => {
   
     dataset = dataset
     .filter(d => d["country"] == country)
-    .filter(d => +d["year"] > +startYear)
-    .filter(d => +d["year"] < +endYear)
+    .filter(d => +d["year"] >= +startYear)
+    .filter(d => +d["year"] <= +endYear)
     .map(d => {
       return {
         "urbanpop": +d["urbanpop"],
@@ -30,12 +30,12 @@ const buildPCPUser = (dataset, country, startYear, endYear) => {
     console.log(dataset)
   
     const margin = 50,
-    width = 700 - margin
-    height = 200 - margin
+    width = 1000 - margin
+    height = 400 - margin
 
   
     var svg = svg.append("g")
-            //  .attr("transform", "translate(" + -100 + "," + 40 + ")");
+             .attr("transform", "translate(" + 10 + "," + 40 + ")");
     
     dimensions = d3.keys(dataset[0]).filter(function(d) { return d != "clusterID" })
   

@@ -4,7 +4,7 @@ const makeBubbleChart = (title, country, dataset,param,id) => {
     var bubbleDataset = {}
     dataset.forEach(d => {
       if (d["country"] == country){
-        const pi = d[param].split(/,|;|and/) 
+        const pi = d[param].split(/,/) 
         pi.forEach(i => {
           if (i in bubbleDataset){
             bubbleDataset[i] += 1;
@@ -85,7 +85,8 @@ const makeBubbleChart = (title, country, dataset,param,id) => {
         .attr("dy", ".2em")
         .style("text-anchor", "middle")
         .text(function(d) {
-            return d.data.Name.substring(0, d.r / 3);
+            // return d.data.Name.substring(0, d.r / 3);
+            return d.data.Name
         })
         .attr("font-family", "sans-serif")
         .attr("font-size", function(d){
