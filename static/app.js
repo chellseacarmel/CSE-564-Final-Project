@@ -86,7 +86,7 @@ d3.csv("static/updated.csv", function(data) {
     var filtered_data = new_data.map(function(d) {
         return {
           date: +d.year,  
-          gdp: +d.gdppercap,
+          gdp: +d.gdpgrowth,
           urbanization: +d.urbanpop,
           inflation: +d.inflation,
           vulnerable: +d.vulnerableEmployment,
