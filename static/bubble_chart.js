@@ -23,7 +23,7 @@ const makeBubbleChart = (title, country, dataset,param,id) => {
     bd = {"children": bd}
     dataset = bd;
     console.log(dataset)
-    var diameter = 200;
+    var diameter = 350;
     var color = d3.scaleOrdinal(d3.schemeCategory20);
   
     var bubble = d3.pack(dataset)

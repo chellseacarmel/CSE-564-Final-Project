@@ -116,23 +116,32 @@ d3.csv("static/updated.csv", function(data) {
 
     var table_data = []
     filtered_data.forEach(function(d, i){
-      table_data.push([d.note, d.source,d.demand,d.response]);  
+      table_data.push([d.date, d.note, d.source,d.demand,d.response]);  
     });
 
     TableSort(
       "#table",
-      [{text:"Description", sort: TableSort.alphabet}, 
+      [{text:"Year", sort: TableSort.alphabet},
+      {text:"Description", sort: TableSort.alphabet}, 
       {text:"Sources", sort: TableSort.alphabet},
       {text:"Demands", sort: TableSort.alphabet},
       {text:"Responses", sort: TableSort.alphabet}
       ],
       table_data,
-      {display:"flex", height:"300px"}
+      {height:"300px", width: "700px"}
       );
     
     // Adding table interactions
     var trows = document.querySelectorAll("tr")
-    trows.forEach(d => d.id="collapsed")
+    trows.forEach(d => {
+      let cells = d.querySelectorAll("td")
+      console.log(cells)
+      cells.forEach(c=>{
+        console.log(c)
+        c.style.height = "20px"
+      })
+      d.className="collapsed"
+    })
 })
 
 }
