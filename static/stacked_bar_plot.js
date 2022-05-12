@@ -16,8 +16,8 @@ function draw_stacked_bar_plot(violence_data, max_protest_participants, country)
 
     // set the dimensions and margins of the graph
     var margin = { top: 10, right: 30, bottom: 20, left: 80 },
-        width = 1600 - margin.left - margin.right,
-        height = 90 - margin.top - margin.bottom;
+        width = 2400 - margin.left - margin.right,
+        height = 110 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     var svg = d3.select("#stacked_bar_chart")

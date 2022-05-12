@@ -133,7 +133,7 @@ d3.csv("static/updated.csv", function(data) {
       {text:"Responses", sort: TableSort.alphabet},
       ],
       table_data,
-      {height:"300px", width: "1000px"}
+      {height:"600px", width: "1020px"}
       );
     
     // Adding table interactions

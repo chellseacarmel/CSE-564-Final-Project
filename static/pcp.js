@@ -3,11 +3,11 @@ const buildPCPUser = (dataset, country, startYear, endYear) => {
 
     var svg = d3.select("#pcp")
             .attr("class","mdl-shadow--2dp mdl-cell mdl-cell--6-col mdl-grid text-aligin--center")
-            .attr("width",1000)
-            .attr("height", 400)
+            .attr("width",1200)
+            .attr("height", 600)
             .append("svg")
-            .attr("width",1000)
-            .attr("height", 400)
+            .attr("width",1200)
+            .attr("height", 600)
   
     dataset = dataset
     .filter(d => d["country"] == country)
@@ -30,12 +30,12 @@ const buildPCPUser = (dataset, country, startYear, endYear) => {
     console.log(dataset)
   
     const margin = 50,
-    width = 1000 - margin
-    height = 400 - margin
+    width = 1200 - margin
+    height = 600 - margin
 
   
     var svg = svg.append("g")
-             .attr("transform", "translate(" + 10 + "," + 40 + ")");
+             .attr("transform", "translate(" + -50 + "," + 40 + ")");
     
     dimensions = d3.keys(dataset[0]).filter(function(d) { return d != "clusterID" })
   
