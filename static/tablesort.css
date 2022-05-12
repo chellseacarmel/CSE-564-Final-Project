@@ -45,3 +45,7 @@
     background: #fff;
 }
 
+.collapsed{
+    max-height: 50px;
+    height: 50px;
+}

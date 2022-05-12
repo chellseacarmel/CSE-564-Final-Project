@@ -37,7 +37,7 @@ const makeBubbleChart = (title, country, dataset,param,id) => {
     //     .attr("class", "bubble");
   
     var svg = d3.select(id)
-        .attr("class","mdl-shadow--2dp mdl-cell mdl-cell--2-col mdl-grid text-aligin--center")
+        // .attr("class","mdl-shadow--2dp mdl-cell mdl-cell--2-col mdl-grid text-aligin--center")
         .append("svg")
         .attr("width", diameter)
         .attr("height", diameter)

@@ -110,7 +110,9 @@ d3.csv("static/updated.csv", function(data) {
     makeBubbleChart("bubblechart", country, filtered_data,"demand","#bubblechart2")
     makeBubbleChart("bubblechart", country, filtered_data,"response","#bubblechart3")
 
+    drawBarChart(data, country)
     buildPCPUser(data,country,start,end)
+    //lakdjfldkjf
 
     var table_data = []
     filtered_data.forEach(function(d, i){
@@ -125,46 +127,76 @@ d3.csv("static/updated.csv", function(data) {
       {text:"Responses", sort: TableSort.alphabet}
       ],
       table_data,
-      {width:"500px",height:"300px"}
+      {display:"flex", height:"300px"}
       );
+    
+    // Adding table interactions
+    var trows = document.querySelectorAll("tr")
+    trows.forEach(d => d.id="collapsed")
 })
 
 }
 
-function drawBarChart(){
-  d3.csv("static/updated.csv", function(data) {
+function drawBarChart(data, country){
+  data = data.filter(d=>d.country == country)
 
-    const violence_data = new Map();
-      let max_protest_participants = 0;
-      data.forEach(function (d) {
-        if (!violence_data.has(d.year)) {
-          violence_data.set(d.year, {
-            year: d.year,
-            violent: 0,
-            non_violent: 0,
-          })
-        };
-  
-        const toChange = violence_data.get(d.year);
-        if (d.participants !== "nan") {
-          if (+d.protesterviolence === 1) {
-            toChange.violent += parseInt(d.participants);
-            max_protest_participants = Math.max(max_protest_participants, toChange.violent);
-          }
-          if (+d.protesterviolence === 0) {
-            toChange.non_violent += parseInt(d.participants);
-            max_protest_participants = Math.max(max_protest_participants, toChange.non_violent);
-          }
+  const violence_data = new Map();
+    let max_protest_participants = 0;
+    data.forEach(function (d) {
+      if (!violence_data.has(d.year)) {
+        violence_data.set(d.year, {
+          year: d.year,
+          violent: 0,
+          non_violent: 0,
+        })
+      };
+
+      const toChange = violence_data.get(d.year);
+      if (d.participants !== "nan") {
+        if (+d.protesterviolence === 1) {
+          toChange.violent += parseInt(d.participants);
+          max_protest_participants = Math.max(max_protest_participants, toChange.violent);
         }
+        if (+d.protesterviolence === 0) {
+          toChange.non_violent += parseInt(d.participants);
+          max_protest_participants = Math.max(max_protest_participants, toChange.non_violent);
+        }
+      }
+
+    });
+ 
+  draw_stacked_bar_plot(violence_data, max_protest_participants, country);
+  // d3.csv("static/updated.csv", function(data) {
+
+  //   const violence_data = new Map();
+  //     let max_protest_participants = 0;
+  //     data.forEach(function (d) {
+  //       if (!violence_data.has(d.year)) {
+  //         violence_data.set(d.year, {
+  //           year: d.year,
+  //           violent: 0,
+  //           non_violent: 0,
+  //         })
+  //       };
   
-      });
+  //       const toChange = violence_data.get(d.year);
+  //       if (d.participants !== "nan") {
+  //         if (+d.protesterviolence === 1) {
+  //           toChange.violent += parseInt(d.participants);
+  //           max_protest_participants = Math.max(max_protest_participants, toChange.violent);
+  //         }
+  //         if (+d.protesterviolence === 0) {
+  //           toChange.non_violent += parseInt(d.participants);
+  //           max_protest_participants = Math.max(max_protest_participants, toChange.non_violent);
+  //         }
+  //       }
+  
+  //     });
    
-    draw_stacked_bar_plot(violence_data, max_protest_participants, selected_country);
-  })
+  //   draw_stacked_bar_plot(violence_data, max_protest_participants, country);
+  // })
 }
 
 drawMap()
-
-drawBarChart()
 
 drawCharts()

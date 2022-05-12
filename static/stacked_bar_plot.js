@@ -1,7 +1,11 @@
 var arr = []
 
 
-function draw_stacked_bar_plot(violence_data, max_protest_participants, selected_country) {
+function draw_stacked_bar_plot(violence_data, max_protest_participants, country) {
+
+    console.log("blah")
+    console.log(violence_data)
+    console.log(max_protest_participants)
 
     d3.select('#stacked_bar_chart').select('svg').remove()
 
