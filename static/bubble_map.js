@@ -53,9 +53,9 @@ let onClick = function(d) {
 
   tip.show(d)
 
-  d3.select('#bubblechart').select('svg').remove()
-  d3.select('#bubblechart2').select('svg').remove()
-  d3.select('#bubblechart3').select('svg').remove()
+  d3.select('#bubblechart').selectAll('svg').remove()
+  d3.select('#bubblechart2').selectAll('svg').remove()
+  d3.select('#bubblechart3').selectAll('svg').remove()
   d3.select('#pcp').select('svg').remove()
   drawCharts()
 }
