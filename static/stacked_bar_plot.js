@@ -91,8 +91,8 @@ function draw_stacked_bar_plot(violence_data, max_protest_participants, country)
     
     
     function isBrushed(coords, cx) {
-            var x0 = coords[0][0]-110,
-                x1 = coords[1][0]-110
+            var x0 = coords[0][0]-160,
+                x1 = coords[1][0]-160
 
             if(x0<= cx && cx <= x1){
                 return 1;
