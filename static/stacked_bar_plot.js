@@ -24,7 +24,7 @@ function draw_stacked_bar_plot(violence_data, max_protest_participants, country)
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
-        .call( d3.brush().extent([[0,0],[1600,90]]).on("end", updateChart) )
+        .call( d3.brush().extent([[0,0],[2400,110]]).on("end", updateChart) )
         .append("g")
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
