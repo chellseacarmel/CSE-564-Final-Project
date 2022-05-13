@@ -11,7 +11,15 @@ var height = 500
 
 var projection = d3.geoMercator().translate([ width/2, height/2 ])
 
-selected_country = ""
+
+
+
+const values = Object.values(frequencies);
+
+var colorScale = d3.scaleLinear().domain([Math.min(...values),Math.max(...values)*0.4])
+  .range(['#FFB6C1', '#00008B']) // pink,blue
+
+  var tip;
 
 
 let onClick = function(d) {
@@ -20,23 +28,37 @@ let onClick = function(d) {
   d3.selectAll(".Country")
   .transition()
   .duration(200)
-  .style("fill-opacity", 1)
+  .style("fill",function(d){
+    if(d.total>0){
+      return colorScale(d.total)
+    }
+    else{return "#ffffff"}
+    })
+
+  d3.selectAll(".selected")
+  .style("fill",function(d){
+    if(d.total>0){
+      return colorScale(d.total)
+    }
+    else{return "#ffffff"}
+    })
+
   d3.select(this)
   .transition()
   .duration(2)
   .style("fill-opacity", 1)
-  .style("stroke", "#7967ff")
+  .style("fill","#ff5252")
+
+  selected(this)
+
+  tip.show(d)
+
   d3.select('#bubblechart').select('svg').remove()
   d3.select('#bubblechart2').select('svg').remove()
   d3.select('#bubblechart3').select('svg').remove()
   d3.select('#pcp').select('svg').remove()
   drawCharts()
 }
-
-const values = Object.values(frequencies);
-
-var colorScale = d3.scaleLinear().domain([Math.min(...values),Math.max(...values)*0.4])
-  .range(['#FFB6C1', '#00008B']) // pink,blue
 
 var format = d3.format(",");
 
@@ -52,7 +74,7 @@ var g = svg.append("g")
  
 d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson", function(data){
 
-  var tip = d3.tip()
+  tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([10, 0])
   .html(function(d) {
@@ -79,7 +101,14 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/w
         }
         
       })
-
+    .style("fill",function(d){
+      if(d.properties.name==selected_country){
+        d3.selectAll(".d3-tip").remove()
+        svg.call(tip)
+        return "#ff0000da"
+  
+      }
+    })
     .attr("d", d3.geoPath()
           .projection(projection)
       )
@@ -90,19 +119,20 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/w
     .on("click", onClick)
 
     .on('mouseover', function(d) {
-      tip.show(d);
+      //tip.show(d);
       d3.select(this)
           .style("stroke-width", 3)
           .style("stroke","#ff5252"); //#ff5252   #FFAA33
   })
 
   .on('mouseout', function(d) {
-      tip.hide(d);
+      //tip.hide(d);
       d3.select(this)
           .style("stroke-width", 1)
           .style("stroke","#7967ff");
   });
-    
+
+  
 })
 
 var zoom = d3.zoom()
@@ -117,4 +147,10 @@ svg.call(zoom);
 
 function getSelectedCountry(){
   return selected_country;
+}
+
+function selected(value){
+  console.log(value)
+  d3.select('.selected').classed('selected', false);
+  d3.select(value).classed('selected', true);
 }
