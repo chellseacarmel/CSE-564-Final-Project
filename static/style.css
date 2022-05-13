@@ -31,3 +31,8 @@ html, body {
   pointer-events: none;
   box-shadow: 2px 2px 5px gray;
 }
+
+
+.selected{
+  background: #ff0000da;
+}
