@@ -209,6 +209,18 @@ function drawBarChart(data, country){
   // })
 }
 
-drawMap()
+// drawMap()
 
-drawCharts()
+// drawCharts()
+// override window zoom scale
+window.onload = () => {
+  let currentWidth = document.body.offsetWidth;
+  let newZoom = (currentWidth * 100) / 2600;
+  // console.log("Width: " + currentWidth);
+  // console.log("Zoom: " + newZoom);
+  document.body.style.zoom = newZoom + "%";
+  console.log("Zoom is changed!");
+
+  drawMap();
+  drawCharts();
+}
