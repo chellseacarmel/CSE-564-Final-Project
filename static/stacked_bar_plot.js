@@ -28,6 +28,8 @@ function draw_stacked_bar_plot(violence_data, max_protest_participants, country)
         .append("g")
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
+    
+    
 
     // svg.append("text")
     //     .attr("text-anchor", "start")
@@ -39,7 +41,7 @@ function draw_stacked_bar_plot(violence_data, max_protest_participants, country)
         .range([0, width])
         .padding([0.2])
     svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(80," + height + ")")
         .call(d3.axisBottom(x).tickSizeOuter(0));
 
 
@@ -51,13 +53,13 @@ function draw_stacked_bar_plot(violence_data, max_protest_participants, country)
         .domain([0, max_protest_participants])
         .range([height, 0]);
     svg.append("g")
+        .attr("transform", "translate(80," + 0 + ")")
         .call(d3.axisLeft(y).ticks(4));
 
     const stackedData = d3.stack()
         .keys(catergories)
         (data)
     console.log(stackedData)
-
 
     var groups =svg.append("g")
         .selectAll("g")
@@ -74,6 +76,15 @@ function draw_stacked_bar_plot(violence_data, max_protest_participants, country)
         .attr("y", function (d) { return y(d[1]); })
         .attr("height", function (d) { return y(d[0]) - y(d[1]); })
         .attr("width", x.bandwidth())
+
+        var legend = d3.legendColor()
+        .scale(color)
+        .title("Legend")
+        .labels(["violent","non violent"]);
+    
+        groups.append("g")
+        .attr("transform", "translate(-60,"+(18)+")")
+        .call(legend);
     
     
     function isBrushed(coords, cx) {
@@ -104,6 +115,7 @@ function draw_stacked_bar_plot(violence_data, max_protest_participants, country)
         drawMap()
 
     }
+
 }
 
 function getStartTime(){

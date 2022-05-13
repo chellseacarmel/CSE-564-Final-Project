@@ -143,6 +143,15 @@ var zoom = d3.zoom()
 });
 
 svg.call(zoom);
+
+var legend = d3.legendColor()
+    .scale(colorScale)
+    .title("Number of Protests");
+
+    svg.append("g")
+    .attr("transform", "translate(30,"+(height-120)+")")
+    .call(legend);
+
 }
 
 function getSelectedCountry(){
