@@ -108,9 +108,9 @@ d3.csv("static/updated.csv", function(data) {
 
     draw_line_chart(filtered_data)
 
-    makeBubbleChart("bubblechart", country, filtered_data,"protestergroup","#bubblechart")
-    makeBubbleChart("bubblechart", country, filtered_data,"demand","#bubblechart2")
-    makeBubbleChart("bubblechart", country, filtered_data,"response","#bubblechart3")
+    makeBubbleChart("Protester Identity", country, filtered_data,"protestergroup","#bubblechart")
+    makeBubbleChart("Protester Demands", country, filtered_data,"demand","#bubblechart2")
+    makeBubbleChart("State Response", country, filtered_data,"response","#bubblechart3")
 
     drawBarChart(data, country)
     buildPCPUser(data,country,start,end)
