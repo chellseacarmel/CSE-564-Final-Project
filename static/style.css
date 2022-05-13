@@ -36,3 +36,8 @@ html, body {
 .selected{
   background: #ff0000da;
 }
+
+svg{
+  margin: 0px;
+  padding: 0px;
+}

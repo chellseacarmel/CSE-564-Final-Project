@@ -37,22 +37,40 @@ const makeBubbleChart = (title, country, dataset,param,id) => {
             return "<strong>"+param+": </strong><span class='details'>" + d.data.Name + "<br></span>" + "<strong>Number of Protests: </strong><span class='details'>" + d.data.Count + "</span>";
     })
 
-
     // var svg = d3.select("#bubblechart")
     //     .append("svg")
     //     .attr("width", diameter)
     //     .attr("height", diameter)
     //     .attr("class", "bubble");
   
+    d3.select(id)
+        .append("svg")
+        .attr("width", diameter)
+        .attr("height", 30)
+        .append("text")
+        .attr("font-size", "20px")
+        .attr("x", 140)
+        .attr("y", 25)
+        .text(`${title}`)
+
     var svg = d3.select(id)
         // .attr("class","mdl-shadow--2dp mdl-cell mdl-cell--2-col mdl-grid text-aligin--center")
         .append("svg")
         .attr("width", diameter)
-        .attr("height", diameter)
-        .attr("class", "bubble");
+        // .attr("height", diameter)
+        .attr("height", 350)
+        .attr("class", "bubble")
+        .attr("transform","translate(40,0)")
 
     svg.call(tip);
-  
+    
+    // svg
+    // .append("text")
+    //     .attr("x", 80)
+    //     .attr("y", 20)
+    //     .attr("font-size", "20px")
+    //     .text(`${title}`)
+
     var nodes = d3.hierarchy(dataset)
         .sum(function(d) { return d.Count; });
   
@@ -66,7 +84,7 @@ const makeBubbleChart = (title, country, dataset,param,id) => {
         .attr("class", "node")
         .attr("transform", function(d) {
             return "translate(" + d.x + "," + d.y + ")";
-        });
+        })
   
     node.append("title")
         .text(function(d) {
