@@ -22,12 +22,13 @@ function draw_stacked_bar_plot(violence_data, max_protest_participants, country)
     // append the svg object to the body of the page
     var svg = d3.select("#stacked_bar_chart")
         .append("svg")
-        .attr("width", width + margin.left + margin.right)
+        .attr("width", width + margin.left + margin.right + 80)
         .attr("height", height + margin.top + margin.bottom)
-        .call( d3.brush().extent([[0,0],[2400,110]]).on("end", updateChart) )
+        .call( d3.brush().extent([[0,0],[2500,110]]).on("end", updateChart) )
         .append("g")
         .attr("transform",
-            "translate(" + margin.left + "," + margin.top + ")");
+            "translate(" + margin.left + "," + margin.top + ")")
+            // .attr("transform", "translate(80,0)")
     
     
 
@@ -59,6 +60,7 @@ function draw_stacked_bar_plot(violence_data, max_protest_participants, country)
     const stackedData = d3.stack()
         .keys(catergories)
         (data)
+    console.log("stackedData")
     console.log(stackedData)
 
     var groups =svg.append("g")
@@ -76,15 +78,16 @@ function draw_stacked_bar_plot(violence_data, max_protest_participants, country)
         .attr("y", function (d) { return y(d[1]); })
         .attr("height", function (d) { return y(d[0]) - y(d[1]); })
         .attr("width", x.bandwidth())
+        .attr("transform", "translate(80," + 0+ ")")
 
-        var legend = d3.legendColor()
-        .scale(color)
-        .title("Legend")
-        .labels(["violent","non violent"]);
-    
-        groups.append("g")
-        .attr("transform", "translate(-60,"+(18)+")")
-        .call(legend);
+    var legend = d3.legendColor()
+    .scale(color)
+    .title("Legend")
+    .labels(["violent","non violent"]);
+
+    groups.append("g")
+    .attr("transform", "translate(-60,"+(18)+")")
+    .call(legend);
     
     
     function isBrushed(coords, cx) {
