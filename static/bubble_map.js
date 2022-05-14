@@ -76,7 +76,7 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/w
 
   tip = d3.tip()
   .attr('class', 'd3-tip')
-  .offset([10, 0])
+  .offset([150, 250])
   .html(function(d) {
       return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>Number of Protests: </strong><span class='details'>" + format(frequencies[d.properties.name]) + "</span>";
   })
